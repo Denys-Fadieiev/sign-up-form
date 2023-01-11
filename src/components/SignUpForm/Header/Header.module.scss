@@ -1,0 +1,25 @@
+@import '../../../common/styles/vars';
+@import '../../../common/styles/templates';
+
+.head{
+  @extend %flex-col;
+  align-items: center;
+  width: 100%;
+}
+
+.headIcon{
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 50%;
+  font-size: 40px;
+  background: $mint-color;
+  color: $white-color;
+}
+
+.title{
+  margin-bottom: 30px;
+  font-size: 32px;
+  color: $grey-color;
+}
