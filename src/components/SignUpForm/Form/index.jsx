@@ -1,5 +1,6 @@
 import React from 'react';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import classNames from 'classnames';
 import styles from './Form.module.scss';
 
 const Form = (props) => {
@@ -8,6 +9,9 @@ const Form = (props) => {
     email,
     password,
     passwordConfirm,
+    isFullnameValid,
+    isEmailValid,
+    isPasswordValid,
     isVisible,
     isAgree,
     handleFulnameChange, 
@@ -16,16 +20,37 @@ const Form = (props) => {
     handlePasswordConfirmChange,
     handleAgreeChange,
     handleIsVisibleChange,
+    handleSubmit,
   } = props;
 
+  const isFullnameValidClassname = classNames(styles.input, {
+    [styles.inputValid]: isFullnameValid,
+    [styles.inputInvalid]: !isFullnameValid,
+  });
+
+  const emailClassname = classNames(styles.input, {
+    [styles.inputValid]: isEmailValid,
+    [styles.inputInvalid]: !isEmailValid,
+  });
+
+  const passwordClassname = classNames(styles.input, {
+    [styles.inputValid]: isPasswordValid,
+    [styles.inputInvalid]: !isPasswordValid,
+  });
+
+  const passwordConfirmChangeClassname = classNames(styles.input, {
+    [styles.inputValid]: isPasswordValid,
+    [styles.inputInvalid]: (passwordConfirm === '') || (passwordConfirm !== password) || !isPasswordValid,
+  });
+
   return (
-    <form action="#" className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <label className={styles.label}>
         <span className={styles.span}>
           FULLNAME
         </span>
         <input 
-          className={styles.input}
+          className={isFullnameValidClassname}
           type="text" 
           name='fullname'
           placeholder='Enter your fullname'
@@ -39,7 +64,7 @@ const Form = (props) => {
           EMAIL ADDRESS
         </span>
         <input 
-          className={styles.input}
+          className={emailClassname}
           type="email" 
           name='email'
           placeholder='Enter your email'
@@ -52,7 +77,7 @@ const Form = (props) => {
           PASSWORD
         </span>
         <input 
-          className={styles.input}
+          className={passwordClassname}
           type={!isVisible ? "password" : "text"} 
           name='password'
           placeholder='Enter your password'
@@ -73,7 +98,7 @@ const Form = (props) => {
           PASSWORD CONFIRMATION
         </span>
         <input 
-          className={styles.input}
+          className={passwordConfirmChangeClassname}
           type={!isVisible ? "password" : "text"} 
           name='password confirmation'
           placeholder='Confirm the your password'

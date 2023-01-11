@@ -24,10 +24,19 @@
   padding: 15px;
   border: solid 1px $light-grey-color;
   border-radius: 5px;
+  background: none;
 }
 
 .input::placeholder{
   color: $light-grey-color;
+}
+
+.inputValid{
+  box-shadow: 0 0 4px 1px $mint-color;
+}
+
+.inputInvalid{
+  box-shadow: 0 0 4px 1px $red-color;
 }
 
 .btnEye{
